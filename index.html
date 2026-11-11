@@ -17,6 +17,33 @@
       --green-dark: #193e35;
       --lime: #d7ed9f;
       --orange: #e8955b;
+      --category-major-required: #285d4f;
+      --category-major-elective: #367b73;
+      --category-basic: #a8781e;
+      --category-general-foundation: #5273b2;
+      --category-general-extended: #916b9b;
+      --category-free: #c66c35;
+      --category-pe: #b55876;
+      --category-internship: #347d91;
+      --category-project: #6861a7;
+      --category-major-required-bg: #e6f0eb;
+      --category-major-elective-bg: #e6f2f0;
+      --category-basic-bg: #f8f0dc;
+      --category-general-foundation-bg: #eaf0fb;
+      --category-general-extended-bg: #f3ebf5;
+      --category-free-bg: #fff0e4;
+      --category-pe-bg: #f8eaf0;
+      --category-internship-bg: #e6f2f5;
+      --category-project-bg: #eeecf8;
+      --category-major-required-text: #214a3e;
+      --category-major-elective-text: #245b55;
+      --category-basic-text: #74510f;
+      --category-general-foundation-text: #3c5587;
+      --category-general-extended-text: #6e4e77;
+      --category-free-text: #854b25;
+      --category-pe-text: #7b3650;
+      --category-internship-text: #24596a;
+      --category-project-text: #4e497f;
       --shadow: 0 18px 50px rgba(34, 54, 46, .08);
     }
 
@@ -146,6 +173,51 @@
       margin-top: 28px;
     }
 
+    .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    .hero-insights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .hero-insight {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 254, 250, .88);
+    }
+
+    .hero-insight-icon, .visual-icon {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 9px;
+      background: #edf2e8;
+      color: var(--green);
+    }
+
+    .hero-insight-icon svg, .visual-icon svg, .graduation-category svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .hero-insight strong { display: block; font-size: 1.15rem; line-height: 1.1; }
+    .hero-insight small { display: block; margin-top: 3px; color: var(--muted); font-size: .68rem; line-height: 1.25; }
+
     .button {
       display: inline-flex;
       min-height: 46px;
@@ -256,36 +328,56 @@
     .checklist-table td { font-size: .86rem; }
     .checklist-table tbody tr:last-child td { border-bottom: 0; }
     .checklist-table td:first-child { width: 150px; font-weight: 700; white-space: nowrap; }
+    .graduation-category { display: inline-flex; align-items: center; gap: 9px; }
+    .graduation-category svg { width: 18px; height: 18px; color: var(--green); fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+    .checklist-table tr[data-credit-category] .graduation-category svg { color: var(--row-category-color, var(--green)); }
+    .checklist-table tr[data-credit-category="major-elective"] { --row-category-color: var(--category-major-elective); }
+    .checklist-table tr[data-credit-category="basic"] { --row-category-color: var(--category-basic); }
+    .checklist-table tr[data-credit-category="general-foundation"] { --row-category-color: var(--category-general-foundation); }
+    .checklist-table tr[data-credit-category="general-extended"] { --row-category-color: var(--category-general-extended); }
+    .checklist-table tr[data-credit-category="free"] { --row-category-color: var(--category-free); }
     .checklist-table td:nth-child(2) { width: 120px; white-space: nowrap; }
     .checklist-table td:last-child { width: 116px; text-align: center; }
     .checklist-table input { width: 20px; height: 20px; accent-color: var(--green); cursor: pointer; }
     .checklist-table label { display: inline-flex; min-height: 32px; align-items: center; justify-content: center; gap: 7px; cursor: pointer; }
-    .checklist-progress { margin: 0 0 12px; color: var(--green-dark); font-size: .86rem; font-weight: 700; }
-    .checklist-credit-total {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .checklist-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      align-items: start;
       gap: 18px;
-      margin: 0 0 18px;
-      padding: 21px 25px;
-      border-radius: 14px;
+    }
+    .checklist-feedback {
+      position: sticky;
+      top: 16px;
+      grid-column: 2;
+      grid-row: 1;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+    }
+    .checklist-table-wrap { grid-column: 1; grid-row: 1; }
+    .checklist-credit-total {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 16px;
+      border-radius: 10px;
       background: var(--green-dark);
       color: white;
-      box-shadow: var(--shadow);
     }
 
     .checklist-credit-total span { color: #e0e9e2; font-size: .9rem; font-weight: 700; }
-    .checklist-credit-total strong { color: var(--lime); font-size: clamp(2rem, 5vw, 3rem); line-height: 1; letter-spacing: -.05em; }
+    .checklist-credit-total strong { color: var(--lime); font-size: 2rem; line-height: 1; letter-spacing: -.05em; }
     .checklist-credit-total strong small { color: white; font-size: .95rem; font-weight: 700; letter-spacing: 0; }
 
     .credit-progress {
-      margin: -4px 0 20px;
-      padding: 0 2px;
+      margin: 16px 0 12px;
     }
 
     .credit-progress label {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 12px;
       margin-bottom: 7px;
       color: var(--muted);
@@ -294,6 +386,7 @@
 
     .credit-progress label strong { color: var(--green-dark); }
     .credit-progress progress { display: block; width: 100%; height: 10px; accent-color: var(--green); }
+    .checklist-progress { margin: 0; color: var(--green-dark); font-size: .82rem; font-weight: 700; }
 
     .degree-structure {
       margin-bottom: 22px;
@@ -315,36 +408,62 @@
     .degree-structure-heading p { margin: 3px 0 0; color: var(--muted); font-size: .78rem; }
     .degree-structure-total { flex: 0 0 auto; color: var(--green); font-size: .8rem; font-weight: 800; }
 
-    .degree-bar {
-      display: flex;
-      height: 20px;
-      overflow: hidden;
-      border-radius: 99px;
-      background: #e9ece5;
+    .degree-chart-layout {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      align-items: center;
+      gap: 24px;
     }
 
-    .degree-segment { flex: 0 0 var(--segment-width); background: var(--segment-color); }
+    .degree-donut-wrap { display: grid; justify-items: center; gap: 8px; }
+    .degree-donut {
+      position: relative;
+      display: grid;
+      width: 156px;
+      aspect-ratio: 1;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(#e9ece5 0turn 1turn);
+    }
+    .degree-donut::before {
+      position: absolute;
+      width: 67%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--card);
+      content: "";
+    }
+    .degree-donut-center { position: relative; z-index: 1; text-align: center; }
+    .degree-donut-center strong { display: block; color: var(--green-dark); font-size: 1.65rem; line-height: 1.1; }
+    .degree-donut-center span { color: var(--muted); font-size: .7rem; }
+    .degree-donut-caption { color: var(--muted); font-size: .72rem; }
 
     .degree-legend {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 11px 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px 20px;
       padding: 0;
-      margin: 15px 0 0;
+      margin: 0;
       list-style: none;
     }
 
-    .degree-legend li { display: grid; grid-template-columns: 9px 1fr auto; align-items: center; gap: 7px; min-width: 0; font-size: .78rem; }
-    .degree-legend-swatch { width: 9px; height: 9px; border-radius: 50%; background: var(--segment-color); }
+    .degree-legend li { display: grid; grid-template-columns: 11px minmax(0, 1fr) auto; align-items: center; gap: 8px; min-width: 0; font-size: .8rem; }
+    .degree-legend-swatch { width: 11px; height: 11px; border-radius: 4px; background: var(--segment-color); }
     .degree-legend-label { overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
-    .degree-legend strong { white-space: nowrap; }
+    .degree-legend-value { text-align: right; white-space: nowrap; }
+    .degree-legend-value strong { display: block; color: var(--ink); font-size: .85rem; }
+    .degree-legend-percent { display: block; color: var(--muted); font-size: .68rem; }
 
     .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       color: var(--green);
       font-size: .75rem;
       font-weight: 800;
       letter-spacing: .13em;
     }
+    .section-kicker svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 
     .stats {
       display: grid;
@@ -513,9 +632,20 @@
 
     .semester-bar-value { color: var(--green-dark); font-size: .72rem; font-weight: 800; line-height: 1; }
     .semester-bar { width: min(38px, 72%); min-height: 6px; border-radius: 6px 6px 2px 2px; background: #8bad81; }
-    .semester-chart-button[aria-pressed="true"] .semester-bar { background: var(--green); }
+    .semester-chart-button[aria-pressed="true"] .semester-bar { background-color: var(--green); }
     .semester-chart-term { font-size: .72rem; font-weight: 800; white-space: nowrap; }
     .semester-chart-cumulative { color: var(--muted); font-size: .65rem; white-space: nowrap; }
+
+    .semester-chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+    .semester-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .semester-chart-legend i { width: 10px; height: 10px; border-radius: 3px; background: #8bad81; }
 
     .semester-plan-progress {
       display: grid;
@@ -548,19 +678,31 @@
       min-height: 20px;
       padding: 1px 7px;
       border-radius: 99px;
-      background: #edf2e8;
-      color: var(--green-dark);
+      background: var(--tag-background, var(--category-major-required-bg));
+      color: var(--tag-color, var(--category-major-required-text));
       font-size: .68rem;
       font-weight: 700;
       line-height: 1.4;
       white-space: nowrap;
     }
 
-    .course-tag.elective { background: #fff0e4; color: #854b25; }
-    .course-tag.general { background: #edf0fb; color: #394b83; }
-    .course-tag.english { background: #e6f4f1; color: #20594d; }
-    .course-tag.pe { background: #f8eaf0; color: #7b3650; }
-    .course-tag.planned { background: #f1f0eb; color: #62645b; }
+    .course-tag[data-course-category="major-elective"] { --tag-background: var(--category-major-elective-bg); --tag-color: var(--category-major-elective-text); }
+    .course-tag[data-course-category="basic"] { --tag-background: var(--category-basic-bg); --tag-color: var(--category-basic-text); }
+    .course-tag[data-course-category="general-foundation"] { --tag-background: var(--category-general-foundation-bg); --tag-color: var(--category-general-foundation-text); }
+    .course-tag[data-course-category="general-extended"] { --tag-background: var(--category-general-extended-bg); --tag-color: var(--category-general-extended-text); }
+    .course-tag[data-course-category="free"] { --tag-background: var(--category-free-bg); --tag-color: var(--category-free-text); }
+    .course-tag[data-course-category="pe"] { --tag-background: var(--category-pe-bg); --tag-color: var(--category-pe-text); }
+    .course-tag[data-course-category="internship"] { --tag-background: var(--category-internship-bg); --tag-color: var(--category-internship-text); }
+    .course-tag[data-course-category="project"] { --tag-background: var(--category-project-bg); --tag-color: var(--category-project-text); }
+    .course[data-course-category] .course-name::before { background: var(--course-category-color, var(--category-major-required)); }
+    .course[data-course-category="major-elective"] { --course-category-color: var(--category-major-elective); }
+    .course[data-course-category="basic"] { --course-category-color: var(--category-basic); }
+    .course[data-course-category="general-foundation"] { --course-category-color: var(--category-general-foundation); }
+    .course[data-course-category="general-extended"] { --course-category-color: var(--category-general-extended); }
+    .course[data-course-category="free"] { --course-category-color: var(--category-free); }
+    .course[data-course-category="pe"] { --course-category-color: var(--category-pe); }
+    .course[data-course-category="internship"] { --course-category-color: var(--category-internship); }
+    .course[data-course-category="project"] { --course-category-color: var(--category-project); }
 
     .semester-plan {
       display: grid;
@@ -693,6 +835,34 @@
 
     .semester-heading h4 { margin: 0; font-size: 1rem; }
     .semester-heading span { color: var(--muted); font-size: .76rem; }
+    .semester-heading h4 { display: inline-flex; align-items: center; gap: 8px; }
+    .semester-heading .visual-icon { width: 28px; height: 28px; border-radius: 8px; }
+    .semester-heading .visual-icon svg { width: 16px; height: 16px; }
+    .visual-icon[data-course-category] { background: var(--icon-category-background); color: var(--icon-category-color); }
+    .visual-icon[data-course-category="major-required"] { --icon-category-color: var(--category-major-required); --icon-category-background: var(--category-major-required-bg); }
+    .visual-icon[data-course-category="major-elective"] { --icon-category-color: var(--category-major-elective); --icon-category-background: var(--category-major-elective-bg); }
+    .visual-icon[data-course-category="basic"] { --icon-category-color: var(--category-basic); --icon-category-background: var(--category-basic-bg); }
+    .visual-icon[data-course-category="general-foundation"] { --icon-category-color: var(--category-general-foundation); --icon-category-background: var(--category-general-foundation-bg); }
+    .visual-icon[data-course-category="general-extended"] { --icon-category-color: var(--category-general-extended); --icon-category-background: var(--category-general-extended-bg); }
+    .visual-icon[data-course-category="free"] { --icon-category-color: var(--category-free); --icon-category-background: var(--category-free-bg); }
+    .visual-icon[data-course-category="pe"] { --icon-category-color: var(--category-pe); --icon-category-background: var(--category-pe-bg); }
+    .visual-icon[data-course-category="internship"] { --icon-category-color: var(--category-internship); --icon-category-background: var(--category-internship-bg); }
+    .visual-icon[data-course-category="project"] { --icon-category-color: var(--category-project); --icon-category-background: var(--category-project-bg); }
+
+    .semester-empty {
+      display: grid;
+      min-height: 148px;
+      place-content: center;
+      justify-items: center;
+      gap: 3px;
+      margin-top: 14px;
+      border: 1px dashed #e2a36f;
+      border-radius: 10px;
+      background: #fff3e5;
+      text-align: center;
+    }
+    .semester-empty strong { color: #a64d13; font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 900; line-height: 1; }
+    .semester-empty span { color: #854b25; font-size: .78rem; font-weight: 700; }
 
     .course-list { display: grid; gap: 10px; padding: 14px 0 0; margin: 0; list-style: none; }
 
@@ -772,6 +942,7 @@
       border-radius: 10px;
       background: #fff;
     }
+    .elective-source[data-course-category="free"] { border-top: 3px solid var(--category-free); }
 
     .elective-source h4 { margin: 0 0 4px; font-size: .95rem; }
     .elective-source > p { margin: 0 0 13px; color: var(--muted); font-size: .75rem; }
@@ -825,20 +996,20 @@
     }
 
     .choice-card:has(input:checked) {
-      border: 2px solid #c45d14;
-      background: #fff0d6;
-      box-shadow: 0 0 0 3px rgba(196, 93, 20, .16);
+      border: 2px solid var(--category-major-elective);
+      background: var(--category-major-elective-bg);
+      box-shadow: 0 0 0 3px rgba(54, 123, 115, .16);
     }
-    .choice-card input { width: 18px; height: 18px; flex: 0 0 auto; margin: 3px 0 0; accent-color: #c45d14; }
-    .choice-card:has(input:checked) strong { color: #78350f; }
+    .choice-card input { width: 18px; height: 18px; flex: 0 0 auto; margin: 3px 0 0; accent-color: var(--category-major-elective); }
+    .choice-card:has(input:checked) strong { color: var(--category-major-elective-text); }
     .choice-card strong { display: block; font-size: .9rem; }
     .choice-card span { color: var(--muted); font-size: .78rem; }
     .selected-four-choice {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 5px;
-      background: #fff0d6;
-      color: #9a4310 !important;
+      background: var(--category-major-elective-bg);
+      color: var(--category-major-elective-text) !important;
       font-weight: 700;
       text-decoration: none;
     }
@@ -864,14 +1035,23 @@
       .hero { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-block: 56px 42px; }
       .hero::after { top: 210px; right: -250px; }
       .hero-note { justify-self: start; width: min(100%, 320px); transform: rotate(0); }
+      .hero-insights { gap: 6px; }
+      .hero-insight { grid-template-columns: 1fr; gap: 5px; padding: 9px; }
+      .hero-insight-icon { width: 28px; height: 28px; }
       .section { padding-block: 34px 46px; }
       .section-heading { align-items: start; flex-direction: column; }
+      .checklist-body { grid-template-columns: 1fr; }
+      .checklist-feedback { position: static; }
+      .checklist-feedback, .checklist-table-wrap { grid-column: auto; grid-row: auto; }
+      .credit-progress label { flex-direction: row; justify-content: space-between; gap: 12px; }
       .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .stat { min-height: 118px; padding: 16px; }
       .stat strong { font-size: 1.7rem; }
       .requirements-layout { grid-template-columns: 1fr; }
       .general-domains { grid-template-columns: repeat(2, 1fr); }
-      .degree-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .degree-chart-layout { grid-template-columns: 140px minmax(0, 1fr); gap: 15px; }
+      .degree-donut { width: 132px; }
+      .degree-legend { grid-template-columns: 1fr; gap: 9px; }
       .requirement-list { gap: 9px; }
       .requirement { min-height: 92px; gap: 10px; padding: 12px; }
       .requirement-icon { width: 34px; height: 34px; }
@@ -900,7 +1080,9 @@
       .requirement { align-items: start; flex-direction: column; }
       .degree-structure { padding: 16px; }
       .degree-structure-heading, .semester-chart-heading { align-items: start; flex-direction: column; gap: 4px; }
-      .degree-legend { grid-template-columns: 1fr; }
+      .degree-chart-layout { grid-template-columns: 1fr; }
+      .degree-donut { width: 148px; }
+      .degree-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .semester-chart-term { font-size: .65rem; }
       .semester-chart-cumulative { font-size: .6rem; }
     }
@@ -925,6 +1107,15 @@
   </style>
 </head>
 <body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-graduation" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3.8 2.7 8.2 2.7 12 0v-5M22 9v6"/></symbol>
+    <symbol id="icon-plan" viewBox="0 0 24 24"><path d="M4 19V9m8 10V4m8 15v-7"/><path d="M2 19h20"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"/><path d="M4 18a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8m-8 4h6"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 6.2L20 11l-6.2 1.8L12 19l-1.8-6.2L4 11l6.2-1.8L12 3ZM19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z"/></symbol>
+    <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18m-11 0v2h4v-2"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V10h4v10M10 20V4h4v16m2 0v-7h4v7M2 20h20"/></symbol>
+  </svg>
   <header class="shell topbar">
     <a class="brand" href="#top" aria-label="回到首頁">
       <span class="brand-mark">CYCU</span>
@@ -946,6 +1137,16 @@
           <a class="button" href="#plan">查看八學期課程 <span aria-hidden="true">↘</span></a>
           <a class="button secondary" href="#graduation-checklist">查看畢業條件</a>
         </div>
+        <div class="hero-insights" aria-label="修課規劃數據摘要">
+          <div class="hero-insight">
+            <span class="hero-insight-icon"><svg aria-hidden="true"><use href="#icon-graduation"></use></svg></span>
+            <span><strong>128</strong><small>畢業學分要求</small></span>
+          </div>
+          <div class="hero-insight">
+            <span class="hero-insight-icon"><svg aria-hidden="true"><use href="#icon-plan"></use></svg></span>
+            <span><strong>132</strong><small>八學期課程安排</small></span>
+          </div>
+        </div>
       </div>
       <aside class="hero-note" aria-label="畢業學分概況">
         <span class="note-label">本學期修課表</span>
@@ -957,20 +1158,11 @@
     <section class="shell graduation-checklist" id="graduation-checklist" aria-labelledby="graduation-checklist-title">
       <div class="section-heading">
         <div>
-          <span class="section-kicker">01 / GRADUATION REQUIREMENTS</span>
+          <span class="section-kicker"><svg aria-hidden="true"><use href="#icon-graduation"></use></svg>01 / GRADUATION REQUIREMENTS</span>
           <h2 id="graduation-checklist-title">我的畢業條件與完成進度</h2>
         </div>
         <p>完成一項就勾選，勾選狀態會保存在這台裝置的瀏覽器。依目前資料，115-1 的 23 學分仍在修習中，尚未列為已完成。</p>
       </div>
-      <div class="checklist-credit-total" role="status" aria-live="polite" aria-atomic="true">
-        <span>已勾選完成學分</span>
-        <strong><span id="checklist-credit-count">0</span><small> / 128 學分</small></strong>
-      </div>
-      <div class="credit-progress">
-        <label for="graduation-credit-progress"><span>畢業學分完成比例</span><strong id="graduation-credit-percent">0%</strong></label>
-        <progress id="graduation-credit-progress" max="128" value="0">0 / 128</progress>
-      </div>
-      <p class="checklist-progress" id="checklist-progress">已完成 0 / 6 項</p>
       <section class="degree-structure" aria-labelledby="degree-structure-title">
         <div class="degree-structure-heading">
           <div>
@@ -979,58 +1171,78 @@
           </div>
           <span class="degree-structure-total">畢業門檻總計 128</span>
         </div>
-        <div class="degree-bar" id="degree-credit-bar" role="img" aria-label="畢業學分結構"></div>
-        <ul class="degree-legend" id="degree-credit-legend"></ul>
+        <div class="degree-chart-layout">
+          <div class="degree-donut-wrap">
+            <div class="degree-donut" id="degree-credit-donut" role="img" aria-label="畢業學分結構">
+              <div class="degree-donut-center"><strong>128</strong><span>畢業學分</span></div>
+            </div>
+            <span class="degree-donut-caption">各類學分占比</span>
+          </div>
+          <ul class="degree-legend" id="degree-credit-legend"></ul>
+        </div>
       </section>
-      <div class="checklist-table-wrap">
-        <table class="checklist-table">
-          <thead>
-            <tr>
-              <th scope="col">畢業條件</th>
-              <th scope="col">要求學分</th>
-              <th scope="col">說明</th>
-              <th scope="col">已完成</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>系必修</td>
-              <td>58 學分</td>
-              <td>依資管系課程規劃修畢並通過。</td>
-              <td><label><input type="checkbox" data-graduation-check="major-required" data-credit="58"><span class="visually-hidden">系必修 58 學分已完成</span></label></td>
-            </tr>
-            <tr>
-              <td>系選修</td>
-              <td>20 學分</td>
-              <td>含四管四選二 6 學分；其餘系選修依系上規定完成。</td>
-              <td><label><input type="checkbox" data-graduation-check="major-elective" data-credit="20"><span class="visually-hidden">系選修 20 學分已完成</span></label></td>
-            </tr>
-            <tr>
-              <td>基本知能</td>
-              <td>6 學分</td>
-              <td>依校級與系上規定完成語文等基本知能要求。</td>
-              <td><label><input type="checkbox" data-graduation-check="basic-competencies" data-credit="6"><span class="visually-hidden">基本知能 6 學分已完成</span></label></td>
-            </tr>
-            <tr>
-              <td>通識基礎</td>
-              <td>16 學分</td>
-              <td>依通識課程要求及領域分類修習。</td>
-              <td><label><input type="checkbox" data-graduation-check="general-foundation" data-credit="16"><span class="visually-hidden">通識基礎 16 學分已完成</span></label></td>
-            </tr>
-            <tr>
-              <td>延伸通識</td>
-              <td>12 學分</td>
-              <td>依通識課程要求修習並確認認列。</td>
-              <td><label><input type="checkbox" data-graduation-check="general-extended" data-credit="12"><span class="visually-hidden">延伸通識 12 學分已完成</span></label></td>
-            </tr>
-            <tr>
-              <td>自由學分</td>
-              <td>16 學分</td>
-              <td>目前規劃跨領域學程 6 學分及 PBL 課程 10 學分；PBL 通識改列自由學分後，不再計入通識。</td>
-              <td><label><input type="checkbox" data-graduation-check="free-electives" data-credit="16"><span class="visually-hidden">自由學分 16 學分已完成</span></label></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="checklist-body">
+        <aside class="checklist-feedback" aria-label="勾選完成進度">
+          <div class="checklist-credit-total" role="status" aria-live="polite" aria-atomic="true">
+            <span>已勾選完成學分</span>
+            <strong><span id="checklist-credit-count">0</span><small> / 128 學分</small></strong>
+          </div>
+          <div class="credit-progress">
+            <label for="graduation-credit-progress"><span>畢業學分完成比例</span><strong id="graduation-credit-percent">0%</strong></label>
+            <progress id="graduation-credit-progress" max="128" value="0">0 / 128</progress>
+          </div>
+          <p class="checklist-progress" id="checklist-progress">已完成 0 / 6 項</p>
+        </aside>
+        <div class="checklist-table-wrap">
+          <table class="checklist-table">
+            <thead>
+              <tr>
+                <th scope="col">畢業條件</th>
+                <th scope="col">要求學分</th>
+                <th scope="col">說明</th>
+                <th scope="col">已完成</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-book"></use></svg>系必修</span></td>
+                <td>58 學分</td>
+                <td>依資管系課程規劃修畢並通過。</td>
+                <td><label><input type="checkbox" data-graduation-check="major-required" data-credit="58"><span class="visually-hidden">系必修 58 學分已完成</span></label></td>
+              </tr>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-chart"></use></svg>系選修</span></td>
+                <td>20 學分</td>
+                <td>含四管四選二 6 學分；其餘系選修依系上規定完成。</td>
+                <td><label><input type="checkbox" data-graduation-check="major-elective" data-credit="20"><span class="visually-hidden">系選修 20 學分已完成</span></label></td>
+              </tr>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-spark"></use></svg>基本知能</span></td>
+                <td>6 學分</td>
+                <td>依校級與系上規定完成語文等基本知能要求。</td>
+                <td><label><input type="checkbox" data-graduation-check="basic-competencies" data-credit="6"><span class="visually-hidden">基本知能 6 學分已完成</span></label></td>
+              </tr>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-globe"></use></svg>通識基礎</span></td>
+                <td>16 學分</td>
+                <td>依通識課程要求及領域分類修習。</td>
+                <td><label><input type="checkbox" data-graduation-check="general-foundation" data-credit="16"><span class="visually-hidden">通識基礎 16 學分已完成</span></label></td>
+              </tr>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-globe"></use></svg>延伸通識</span></td>
+                <td>12 學分</td>
+                <td>依通識課程要求修習並確認認列。</td>
+                <td><label><input type="checkbox" data-graduation-check="general-extended" data-credit="12"><span class="visually-hidden">延伸通識 12 學分已完成</span></label></td>
+              </tr>
+              <tr>
+                <td><span class="graduation-category"><svg aria-hidden="true"><use href="#icon-plan"></use></svg>自由學分</span></td>
+                <td>16 學分</td>
+                <td>目前規劃跨領域學程 6 學分及 PBL 課程 10 學分；PBL 通識改列自由學分後，不再計入通識。</td>
+                <td><label><input type="checkbox" data-graduation-check="free-electives" data-credit="16"><span class="visually-hidden">自由學分 16 學分已完成</span></label></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -1038,7 +1250,7 @@
       <div class="shell">
         <div class="section-heading">
           <div>
-            <span class="section-kicker">02 / EIGHT-SEMESTER STUDY PLAN</span>
+            <span class="section-kicker"><svg aria-hidden="true"><use href="#icon-chart"></use></svg>02 / EIGHT-SEMESTER STUDY PLAN</span>
             <h2 id="plan-title">大學八學期修課安排</h2>
           </div>
         </div>
@@ -1058,17 +1270,20 @@
           <div class="semester-chart-heading">
             <div>
               <h3 id="semester-chart-title">八學期學分分布</h3>
-              <p>按柱狀圖查看各學期安排；柱高代表該學期規劃學分。</p>
+              <p>柱高表示各學期安排學分，柱下 Σ 顯示截至該學期的累計學分。</p>
             </div>
             <span class="semester-chart-average" id="semester-chart-average">平均 16 學分 / 學期</span>
           </div>
           <div class="semester-chart" id="semester-credit-chart" role="group" aria-label="八學期修課學分，可選擇學期查看課程"></div>
+          <div class="semester-chart-legend" aria-label="學分圖例">
+            <span><i aria-hidden="true"></i>學期安排學分</span>
+          </div>
           <div class="semester-plan-progress" role="status" aria-live="polite" aria-atomic="true">
             <div class="semester-plan-progress-copy">
-              <strong id="semester-plan-progress-label">累計規劃至大一上｜23 / 128 學分</strong>
-              <span id="semester-plan-progress-remaining">後續尚規劃 105 學分</span>
+              <strong id="semester-plan-progress-label">累計規劃至大一上｜23 / 132 學分</strong>
+              <span id="semester-plan-progress-remaining">後續尚規劃 109 學分</span>
             </div>
-            <progress id="semester-plan-progress" max="128" value="23" aria-label="學期累計規劃學分，並非已完成學分">23 / 128</progress>
+            <progress id="semester-plan-progress" max="132" value="23" aria-label="學期累計規劃學分，並非已完成學分">23 / 132</progress>
           </div>
         </section>
 
@@ -1107,14 +1322,15 @@
             </section>
 
             <section class="semester" aria-labelledby="sem-1-free-title">
-              <div class="semester-heading"><h4 id="sem-1-free-title">自由學分學程</h4><span>本學期規劃 0 學分</span></div>
+              <div class="semester-heading"><h4 id="sem-1-free-title">自由學分學程</h4><span>0 學分</span></div>
+              <div class="semester-empty" role="status"><strong>無</strong><span>本學期未安排此類課程</span></div>
             </section>
           </div>
           <aside class="semester-aside" style="margin-top: 14px"><h4>修課進度</h4><p>系必修 11、基本知能 2、通識基礎 8、延伸通識 2，共 23 學分。</p></aside>
         </section>
 
         <section class="year-panel" id="sem-2" role="tabpanel" aria-labelledby="tab-sem-2" data-semester-credits="22" hidden>
-          <div class="year-summary"><h3>大一下｜延續系必修，開始學程自由學分</h3><p><strong class="semester-credit-total">本學期規劃 22 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong>另排體育興趣 1 學分，不併入 128 學分累計；以下系課程參考 114-2 資管一甲開課，115 入學適用課表以系上公告為準。</p></div>
+          <div class="year-summary"><h3>大一下｜延續系必修，開始學程自由學分</h3><p><strong class="semester-credit-total">本學期規劃 22 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong></p></div>
           <div class="semester-groups">
             <section class="semester" aria-labelledby="sem-2-major-title">
               <div class="semester-heading"><h4 id="sem-2-major-title">系必修與系選修</h4><span>系必修歷年參考 14 學分</span></div>
@@ -1152,7 +1368,7 @@
         </section>
 
         <section class="year-panel" id="sem-3" role="tabpanel" aria-labelledby="tab-sem-3" data-semester-credits="23" hidden>
-          <div class="year-summary"><h3>大二上｜系必修與第一批系選修</h3><p><strong class="semester-credit-total">已列 23 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong>另排體育興趣 1 學分，不併入 128 學分累計；依 115-1 資管二甲及 115 入學前進一年規劃，開課與認列仍以該屆課表確認。</p></div>
+          <div class="year-summary"><h3>大二上｜系必修與第一批系選修</h3><p><strong class="semester-credit-total">已列 23 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong></p></div>
           <div class="semester-groups">
             <section class="semester" aria-labelledby="sem-3-major-title">
               <div class="semester-heading"><h4 id="sem-3-major-title">系必修與系選修</h4><span>系必修 12・系選修候選 5 學分</span></div>
@@ -1199,7 +1415,6 @@
                 <li class="course"><span class="course-name">MI222｜E-Commerce 與數位行銷（EMI） <span class="course-tag elective">系選修候選</span></span><span class="credits">3 學分</span></li>
                 <li class="course"><span class="course-name">MI244｜聊天機器人實作 <span class="course-tag elective">系選修候選</span></span><span class="credits">3 學分</span></li>
               </ul>
-              <p class="course-section-note">MI222 曾於 115-1 開課；MI244 曾於 113-2／114-2 開課，未來學期需查詢。</p>
             </section>
             <section class="semester" aria-labelledby="sem-4-general-title">
               <div class="semester-heading"><h4 id="sem-4-general-title">通識課程</h4><span>基礎 2・延伸 2 學分</span></div>
@@ -1259,7 +1474,7 @@
         </section>
 
         <section class="year-panel" id="sem-6" role="tabpanel" aria-labelledby="tab-sem-6" data-semester-credits="16" hidden>
-          <div class="year-summary"><h3>大三下｜完成系必修、第二門四管與系專題</h3><p><strong class="semester-credit-total">本學期規劃 16 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong>專題及四管開課學期依歷年課表預排，若當屆未開依系上公告調整。</p></div>
+          <div class="year-summary"><h3>大三下｜完成系必修、第二門四管與系專題</h3><p><strong class="semester-credit-total">本學期規劃 16 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong></p></div>
           <div class="semester-groups">
             <section class="semester" aria-labelledby="sem-6-major-title">
               <div class="semester-heading"><h4 id="sem-6-major-title">系必修與系選修</h4><span>系必修 7・四管 3 學分</span></div>
@@ -1291,8 +1506,8 @@
           </div>
         </section>
 
-        <section class="year-panel" id="sem-7" role="tabpanel" aria-labelledby="tab-sem-7" data-semester-credits="8" hidden>
-          <div class="year-summary"><h3>大四上｜完成專題與系選修學分</h3><p><strong class="semester-credit-total">已列 8 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong>通識與基本知能依個人認列進度調整。</p></div>
+        <section class="year-panel" id="sem-7" role="tabpanel" aria-labelledby="tab-sem-7" data-semester-credits="12" hidden>
+          <div class="year-summary"><h3>大四上｜完成專題與系選修</h3><p><strong class="semester-credit-total">本學期規劃 12 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong></p></div>
           <div class="semester-groups">
             <section class="semester" aria-labelledby="sem-7-major-title">
               <div class="semester-heading"><h4 id="sem-7-major-title">系必修與系選修</h4><span>系必修 2・系選修候選 3 學分</span></div>
@@ -1300,23 +1515,27 @@
                 <li class="course"><span class="course-name">MI652｜資訊管理專題（二） <span class="course-tag">系必修候選</span></span><span class="credits">2 學分</span></li>
                 <li class="course"><span class="course-name">MI408｜Android 程式設計 <span class="course-tag elective">系選修候選</span></span><span class="credits">3 學分</span></li>
               </ul>
-              <p class="course-section-note">MI408 曾於 113-1、114-1、115-1 開課；未來開課仍須確認。</p>
-            </section>
-            <section class="semester" aria-labelledby="sem-7-general-title">
-              <div class="semester-heading"><h4 id="sem-7-general-title">通識課程</h4><span>依畢業預檢補差額</span></div>
-              <ul class="course-list">
-                <li class="course"><span class="course-name">已規劃基礎 16、延伸 12 學分；若認列不同，改選當期合格課程</span><span class="credits">依差額</span></li>
-              </ul>
             </section>
             <section class="semester" aria-labelledby="sem-7-basic-title">
-              <div class="semester-heading"><h4 id="sem-7-basic-title">基本知能與體育</h4><span>確認學分及體育通過狀態</span></div>
-              <ul class="course-list">
-              </ul>
+              <div class="semester-heading"><h4 id="sem-7-basic-title">基本知能與體育</h4><span>0 學分</span></div>
+              <div class="semester-empty" role="status"><strong>無</strong><span>本學期未安排此類課程</span></div>
             </section>
             <section class="semester" aria-labelledby="sem-7-free-title">
               <div class="semester-heading"><h4 id="sem-7-free-title">自由學分｜跨領域學程</h4><span>規劃 3 學分</span></div>
               <ul class="course-list">
                 <li class="course"><span class="course-name">FA210A｜初階理財網頁建置 <span class="course-tag elective">數位金融發展跨領域學分學程</span></span><span class="credits">3 學分</span></li>
+              </ul>
+            </section>
+            <section class="semester" aria-labelledby="sem-7-extra-title">
+              <div class="semester-heading"><h4 id="sem-7-extra-title">專題延伸｜課程候選</h4><span>3 學分</span></div>
+              <ul class="course-list">
+                <li class="course"><span class="course-name">MI138R｜資訊管理專題講座 <span class="course-tag elective">專題延伸候選</span></span><span class="credits">3 學分</span></li>
+              </ul>
+            </section>
+            <section class="semester" aria-labelledby="sem-7-internship-title">
+              <div class="semester-heading"><h4 id="sem-7-internship-title">企業實習｜課程候選</h4><span>1 學分</span></div>
+              <ul class="course-list">
+                <li class="course"><span class="course-name">MI441L｜企業實習 A <span class="course-tag elective">資管四甲・80 小時</span></span><span class="credits">1 學分</span></li>
               </ul>
             </section>
           </div>
@@ -1445,6 +1664,8 @@
       MI392G: ['1151', 'MI392G'],
       MI403: ['1151', 'MI403A'],
       MI408: ['1151', 'MI408G'],
+      MI138R: ['1151', 'MI138r'],
+      MI441L: ['1151', 'MI441L'],
       MI509: ['1151', 'MI509M'],
       MI560: ['1142', 'MI560D'],
       MI610: ['1142', 'MI610A'],
@@ -1514,6 +1735,58 @@
       }
     }
 
+    function getCourseCategory(tag) {
+      const label = `${tag.textContent.trim()} ${tag.closest('.course')?.textContent ?? ''}`;
+      if (label.includes('體育')) return 'pe';
+      if (label.includes('實習')) return 'internship';
+      if (/(跨領域|PBL|自由學分)/.test(label)) return 'free';
+      if (label.includes('專題延伸')) return 'project';
+      if (/(系選修|四管)/.test(label)) return 'major-elective';
+      if (label.includes('系必修')) return 'major-required';
+      if (label.includes('基本知能')) return 'basic';
+      if (/(通識基礎|基礎通識)/.test(label)) return 'general-foundation';
+      if (label.includes('延伸通識')) return 'general-extended';
+      if (tag.classList.contains('elective')) return 'major-elective';
+      if (tag.classList.contains('general')) return 'general-foundation';
+      if (tag.classList.contains('english')) return 'basic';
+      return 'major-required';
+    }
+
+    document.querySelectorAll('.course-tag').forEach((tag) => {
+      const category = getCourseCategory(tag);
+      tag.dataset.courseCategory = category;
+      tag.closest('.course').dataset.courseCategory = category;
+    });
+
+    document.querySelectorAll('.elective-source').forEach((source) => {
+      source.dataset.courseCategory = 'free';
+    });
+
+    const semesterIconById = [
+      ['-major-title', 'icon-book', 'major-required'],
+      ['-general-title', 'icon-globe', 'general-foundation'],
+      ['-basic-title', 'icon-spark', 'basic'],
+      ['-free-title', 'icon-plan', 'free'],
+      ['-extra-title', 'icon-chart', 'project'],
+      ['-internship-title', 'icon-briefcase', 'internship']
+    ];
+
+    document.querySelectorAll('.semester-heading h4').forEach((heading) => {
+      const iconMatch = semesterIconById.find(([suffix]) => heading.id.endsWith(suffix));
+      if (!iconMatch) return;
+
+      const icon = document.createElement('span');
+      icon.className = 'visual-icon';
+      icon.dataset.courseCategory = iconMatch[2];
+      icon.setAttribute('aria-hidden', 'true');
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttribute('href', `#${iconMatch[1]}`);
+      svg.append(use);
+      icon.append(svg);
+      heading.prepend(icon);
+    });
+
     document.querySelectorAll('.course-name').forEach((courseName) => {
       linkCourseName(courseName, Array.from(courseName.childNodes).find((node) => node.nodeType === Node.TEXT_NODE));
     });
@@ -1577,7 +1850,7 @@
 
       const averageCredits = plannedCreditsTotal / panels.length;
       document.getElementById('semester-chart-average').textContent =
-        `平均 ${Number.isInteger(averageCredits) ? averageCredits : averageCredits.toFixed(1)} 學分 / 學期`;
+        `平均安排 ${Number.isInteger(averageCredits) ? averageCredits : averageCredits.toFixed(1)} 學分 / 學期`;
       document.getElementById('semester-plan-progress').max = plannedCreditsTotal;
     }
 
@@ -1642,23 +1915,38 @@
     const graduationCreditPercent = document.getElementById('graduation-credit-percent');
     const graduationStorageKey = 'cycu-eight-semester-graduation-checklist';
     const savedGraduationChecks = JSON.parse(localStorage.getItem(graduationStorageKey) ?? '[]');
-    const degreeColors = ['#285d4f', '#6c8d70', '#e8955b', '#667fbd', '#a47b9a', '#b79a55'];
-    const degreeCreditBar = document.getElementById('degree-credit-bar');
+    const graduationCategoryByCheck = {
+      'major-required': 'major-required',
+      'major-elective': 'major-elective',
+      'basic-competencies': 'basic',
+      'general-foundation': 'general-foundation',
+      'general-extended': 'general-extended',
+      'free-electives': 'free'
+    };
+    const categoryColor = (category) =>
+      getComputedStyle(document.documentElement).getPropertyValue(`--category-${category}`).trim();
+    const degreeCreditDonut = document.getElementById('degree-credit-donut');
     const degreeCreditLegend = document.getElementById('degree-credit-legend');
-    const degreeRequirements = graduationChecks.map((checkbox, index) => ({
-      label: checkbox.closest('tr').cells[0].textContent.trim(),
-      credits: Number(checkbox.dataset.credit),
-      color: degreeColors[index % degreeColors.length]
-    }));
+    const degreeRequirements = graduationChecks.map((checkbox) => {
+      const category = graduationCategoryByCheck[checkbox.dataset.graduationCheck];
+      checkbox.closest('tr').dataset.creditCategory = category;
+      return {
+        label: checkbox.closest('tr').cells[0].textContent.trim(),
+        credits: Number(checkbox.dataset.credit),
+        color: categoryColor(category)
+      };
+    });
     const degreeCreditTotal = degreeRequirements.reduce((total, requirement) => total + requirement.credits, 0);
 
+    let degreeStart = 0;
+    const degreeGradient = degreeRequirements.map((requirement) => {
+      const start = degreeStart;
+      degreeStart += requirement.credits / degreeCreditTotal;
+      return `${requirement.color} ${start}turn ${degreeStart}turn`;
+    });
+    degreeCreditDonut.style.background = `conic-gradient(${degreeGradient.join(', ')})`;
+
     degreeRequirements.forEach((requirement) => {
-      const segment = document.createElement('span');
-      segment.className = 'degree-segment';
-      segment.style.setProperty('--segment-width', `${requirement.credits / degreeCreditTotal * 100}%`);
-      segment.style.setProperty('--segment-color', requirement.color);
-      segment.setAttribute('aria-hidden', 'true');
-      degreeCreditBar.append(segment);
 
       const item = document.createElement('li');
       const swatch = document.createElement('span');
@@ -1670,17 +1958,24 @@
       label.className = 'degree-legend-label';
       label.textContent = requirement.label;
 
+      const value = document.createElement('span');
+      value.className = 'degree-legend-value';
       const credits = document.createElement('strong');
       credits.textContent = `${requirement.credits} 學分`;
+      const share = document.createElement('span');
+      share.className = 'degree-legend-percent';
+      share.textContent = `${(requirement.credits / degreeCreditTotal * 100).toFixed(requirement.credits % degreeCreditTotal === 0 ? 0 : 1)}%`;
+      value.append(credits, share);
 
-      item.append(swatch, label, credits);
+      item.append(swatch, label, value);
       degreeCreditLegend.append(item);
     });
 
-    degreeCreditBar.setAttribute(
+    degreeCreditDonut.setAttribute(
       'aria-label',
       `${degreeCreditTotal} 學分畢業門檻組成：${degreeRequirements.map(({ label, credits }) => `${label} ${credits} 學分`).join('、')}`
     );
+    degreeCreditDonut.querySelector('.degree-donut-center strong').textContent = String(degreeCreditTotal);
     document.querySelector('.degree-structure-total').textContent = `畢業門檻總計 ${degreeCreditTotal} 學分`;
     graduationCreditProgress.max = degreeCreditTotal;
 
