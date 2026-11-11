@@ -824,10 +824,24 @@
       cursor: pointer;
     }
 
-    .choice-card:has(input:checked) { border-color: var(--green); background: #f1f6ed; }
-    .choice-card input { width: 18px; height: 18px; flex: 0 0 auto; margin: 3px 0 0; accent-color: var(--green); }
+    .choice-card:has(input:checked) {
+      border: 2px solid #c45d14;
+      background: #fff0d6;
+      box-shadow: 0 0 0 3px rgba(196, 93, 20, .16);
+    }
+    .choice-card input { width: 18px; height: 18px; flex: 0 0 auto; margin: 3px 0 0; accent-color: #c45d14; }
+    .choice-card:has(input:checked) strong { color: #78350f; }
     .choice-card strong { display: block; font-size: .9rem; }
     .choice-card span { color: var(--muted); font-size: .78rem; }
+    .selected-four-choice {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: #fff0d6;
+      color: #9a4310 !important;
+      font-weight: 700;
+      text-decoration: none;
+    }
     .choice-status { margin-top: 14px !important; color: var(--green-dark) !important; font-weight: 700; }
     .choice-slots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
     .choice-slots p { margin: 0; padding: 11px 13px; border-radius: 8px; background: #f0f3eb; font-size: .8rem; }
@@ -928,7 +942,6 @@
       <div>
         <p class="eyebrow">128 CREDITS · EIGHT-SEMESTER PLAN</p>
         <h1 id="page-title">規劃四年修課，<br><span>完成 128 學分。</span></h1>
-        <p class="hero-copy">依資管系畢業學分要求，把 128 學分分配到大學八個學期，整理系必修、系選修、通識與自由學分，作為完成學位的修課參考。實際開課及學分認列仍須依各學期公告與畢業審查確認。</p>
         <div class="hero-actions">
           <a class="button" href="#plan">查看八學期課程 <span aria-hidden="true">↘</span></a>
           <a class="button secondary" href="#graduation-checklist">查看畢業條件</a>
@@ -1028,7 +1041,6 @@
             <span class="section-kicker">02 / EIGHT-SEMESTER STUDY PLAN</span>
             <h2 id="plan-title">大學八學期修課安排</h2>
           </div>
-            <p>以資管系畢業要求與你的 115-1 實際修課進度安排；四管四選二列在大三。未來學期的開課、課程資格及學分認列仍以系統與系辦確認為準。</p>
         </div>
 
         <div class="year-tabs" role="tablist" aria-label="選擇修課年級">
@@ -1061,7 +1073,7 @@
         </section>
 
         <section class="year-panel active" id="sem-1" role="tabpanel" aria-labelledby="tab-sem-1" data-semester-credits="23">
-          <div class="year-summary"><h3>大一上｜115-1 實際修課</h3><p><strong class="semester-credit-total">本學期共 23 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong>另有體育 0 學分；以下學分均屬修習中，尚未計為已修畢。</p></div>
+          <div class="year-summary"><h3>大一上｜115-1 實際修課</h3><p><strong class="semester-credit-total">本學期共 23 學分</strong><strong class="cumulative-credit-total" data-cumulative-credit></strong></p></div>
           <div class="semester-groups">
             <section class="semester" aria-labelledby="sem-1-major-title">
               <div class="semester-heading"><h4 id="sem-1-major-title">系必修與系選修</h4><span>系必修修習中 11 學分</span></div>
@@ -1098,7 +1110,7 @@
               <div class="semester-heading"><h4 id="sem-1-free-title">自由學分學程</h4><span>本學期規劃 0 學分</span></div>
             </section>
           </div>
-          <aside class="semester-aside" style="margin-top: 14px"><h4>修課進度</h4><p>系必修 11、基本知能 2、通識基礎 8、延伸通識 2，共 23 學分正在修習；體育 0 學分。</p><p>以上皆為修習中，尚未計為已修畢。</p></aside>
+          <aside class="semester-aside" style="margin-top: 14px"><h4>修課進度</h4><p>系必修 11、基本知能 2、通識基礎 8、延伸通識 2，共 23 學分。</p></aside>
         </section>
 
         <section class="year-panel" id="sem-2" role="tabpanel" aria-labelledby="tab-sem-2" data-semester-credits="22" hidden>
@@ -1325,7 +1337,6 @@
         <section class="four-choice" id="mi-four-choice" aria-labelledby="four-choice-title">
           <span class="section-kicker">JUNIOR YEAR / MIS ELECTIVES</span>
           <h3 id="four-choice-title">大三系選修｜四管四選二</h3>
-          <p>依你的資管系修課規定，以下四門均安排在大三，需且只能選兩門。勾選後依清單順序顯示在大三上、下；每門 3 學分，實際開課及學分認列仍須向系上確認。</p>
           <fieldset class="choice-grid" aria-describedby="mi-choice-status">
             <legend class="visually-hidden">選擇兩門管理資訊系統課程</legend>
             <label class="choice-card"><input type="checkbox" name="mi-four-choice" value="MI368H"><span><strong>MI368H｜行銷管理資訊系統</strong><span>3 學分・四管系選修・大三</span></span></label>
@@ -1483,6 +1494,7 @@
 
     function updateCourseChoiceLink(link, courseName, placeholder) {
       link.textContent = courseName ?? placeholder;
+      link.classList.toggle('selected-four-choice', Boolean(courseName));
       if (courseName) {
         const code = courseName.match(courseCodePattern)?.[0].replace(/[｜\s].*$/, '');
         const syllabusUrl = code ? getCourseSyllabusUrl(code) : null;
